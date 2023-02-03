@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import csv
 import tkinter as tk
 from tkinter import simpledialog
+from tkinter import messagebox
 from scraper import Scraper
 from log import logger
 import codecs
@@ -20,7 +21,8 @@ def crawl_from_url():
     scraper = Scraper(url=URL)
 
     all_pages_links_from_website = scraper.get_all_pages_of_website()
-
+    messagebox.showinfo("Aguarde", "Aguarde enquanto o processo está sendo executado")
+    
     for page_link in all_pages_links_from_website:
         if type(page_link) is not str:
             break

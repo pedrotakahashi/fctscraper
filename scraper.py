@@ -62,18 +62,22 @@ class Scraper:
 
     def get_links(self):
         dict_href_links = {}
+        print(self.url)
+        print("\n")
         html_data = self.getdata(self.url)
         soup = BeautifulSoup(html_data, "html.parser")
         list_links = []
         website = self.url if self.url.endswith("/") else f"{self.url}/"
         for link in soup.find_all("a", href=True):
-
             # Append to list if new link contains original link
             if str(link["href"]).startswith((str(self.url))):
+                print('ENTROU AQUI')
                 list_links.append(link["href"])
 
             # Include all href that do not start with website link but with "/"
-            if str(link["href"]).startswith("/"):
+            print(link["href"])
+            print('\n')
+            if str(link["href"]).startswith("/") and not str(link["href"]).startswith("//"):
                 if link["href"] not in dict_href_links:
                     logger.debug(link["href"])
                     dict_href_links[link["href"]] = None
