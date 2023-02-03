@@ -1,8 +1,6 @@
-import json
 import re
 
 import requests
-import tqdm
 from bs4 import BeautifulSoup
 
 from log import logger
@@ -22,7 +20,7 @@ class Scraper:
 
     def scrap_root_url(self):
         """Start the BeautifulSoup object of the given url"""
-        req = requests.get(self.url, verify=False)
+        req = requests.get(self.url, verify=True)
         self.soup = BeautifulSoup(req.content, "html.parser")
 
     def get_all_hrefs(self):
@@ -32,7 +30,7 @@ class Scraper:
     @staticmethod
     def scrap_url(url):
         """Return the BeautifulSoup object of a given url"""
-        children_req = requests.get(url, verify=False)
+        children_req = requests.get(url, verify=True)
         return BeautifulSoup(children_req.content, "html.parser")
 
     def find_all_occurrences_of_str(self, string):
@@ -59,7 +57,7 @@ class Scraper:
         return self.soup.find(string=string)
 
     def getdata(self, url):
-        r = requests.get(url, verify=False)
+        r = requests.get(url, verify=True)
         return r.text
 
     def get_links(self):
