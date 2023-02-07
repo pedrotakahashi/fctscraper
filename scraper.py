@@ -71,10 +71,10 @@ class Scraper:
         for link in soup.find_all("a", href=True):
             # Append to list if new link contains original link
             if str(link["href"]).startswith((str(self.url))):
-                print('ENTROU AQUI')
                 list_links.append(link["href"])
 
             # Include all href that do not start with website link but with "/"
+            # since those are too subpages of the website
             print(link["href"])
             print('\n')
             if str(link["href"]).startswith("/") and not str(link["href"]).startswith("//"):
@@ -107,7 +107,7 @@ class Scraper:
         # add website WITH slash on end
         website = self.url if self.url.endswith("/") else f"{self.url}/"
         # create dictionary of website
-        dict_links = {website: "Not-checked"}
+        dict_links = {website: "Not-checked"}  # Initialize 
         website_pages_links = []
 
         counter, counter2 = None, 0

@@ -20,6 +20,7 @@ def crawl_from_url():
     matches = []
     scraper = Scraper(url=URL)
 
+    # Get all pages and subpages of a website
     all_pages_links_from_website = scraper.get_all_pages_of_website()
     messagebox.showinfo("Aguarde", "Aguarde enquanto o processo está sendo executado")
     

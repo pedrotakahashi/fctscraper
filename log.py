@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 def log_file():
     home = os.path.expanduser("~")
-    logs_dir = os.path.join(home, "media_downloader")
+    logs_dir = os.path.join(home, "fctscraper")
     logs_path = os.path.join(logs_dir, "log.txt")
     if not os.path.exists(logs_dir):
         os.makedirs(logs_dir)
